@@ -13,7 +13,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>
 		<PackageTags>find;path;system;utility;which</PackageTags>
-		<RepositoryUrl>https://github.com/cedx/which.net.git</RepositoryUrl>
+		<RepositoryUrl>https://github.com/CedX/Which.net.git</RepositoryUrl>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 

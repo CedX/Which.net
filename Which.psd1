@@ -15,9 +15,9 @@
 
 	PrivateData = @{
 		PSData = @{
-			LicenseUri = "https://github.com/cedx/which.net/blob/main/License.md"
-			ProjectUri = "https://github.com/cedx/which.net"
-			ReleaseNotes = "https://github.com/cedx/which.net/releases"
+			LicenseUri = "https://github.com/CedX/Which.net/blob/main/License.md"
+			ProjectUri = "https://github.com/CedX/Which.net"
+			ReleaseNotes = "https://github.com/CedX/Which.net/releases"
 			Tags = "find", "path", "system", "utility", "which"
 		}
 	}
