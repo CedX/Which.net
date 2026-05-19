@@ -8,28 +8,25 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Authors>CedX</Authors>
-		<IncludeSymbols>true</IncludeSymbols>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>
-		<PackageTags>find;path;system;utility;which</PackageTags>
-		<RepositoryUrl>https://github.com/CedX/Which.net.git</RepositoryUrl>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-	</PropertyGroup>
-
-	<PropertyGroup>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<AssemblyName>Belin.Which</AssemblyName>
-		<HotReloadAutoRestart>true</HotReloadAutoRestart>
+		<AssemblyName>Belin.Which.Tests</AssemblyName>
+		<BaseOutputPath>obj</BaseOutputPath>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<OutDir>../bin</OutDir>
+		<OutDir>../Binaries</OutDir>
 		<RootNamespace>Belin.Which</RootNamespace>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 		<TargetFramework>net10.0</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="../ReadMe.md" Pack="true" PackagePath="" />
-		<PackageReference Include="Mono.Unix" Version="7.*-*" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.*" />
+		<PackageReference Include="MSTest" Version="4.*" />
+	  <ProjectReference Include="../Sources/Which.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+		<Using Include="Microsoft.VisualStudio.TestTools.UnitTesting.Assert" Static="true" />
 	</ItemGroup>
 </Project>

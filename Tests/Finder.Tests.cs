@@ -11,7 +11,7 @@ public sealed class FinderTests {
 	/// <summary>
 	/// The path to the test fixtures.
 	/// </summary>
-	private readonly string fixtures = Path.GetFullPath(Path.Join(AppContext.BaseDirectory, "../res"));
+	private readonly string fixtures = Path.GetFullPath(Path.Join(AppContext.BaseDirectory, "../Resources"));
 
 	[TestMethod]
 	public void Constructor() {
@@ -38,12 +38,12 @@ public sealed class FinderTests {
 		// It should return the path of the `Executable.cmd` file on Windows.
 		List<string> executables = [.. finder.Find("Executable")];
 		HasCount(OperatingSystem.IsWindows() ? 1 : 0, executables);
-		if (OperatingSystem.IsWindows()) EndsWith(@"res\Executable.cmd", executables.First());
+		if (OperatingSystem.IsWindows()) EndsWith(@"Resources\Executable.cmd", executables.First());
 
 		// It should return the path of the `Executable.sh` file on POSIX.
 		executables = [.. finder.Find("Executable.sh")];
 		HasCount(OperatingSystem.IsWindows() ? 0 : 1, executables);
-		if (!OperatingSystem.IsWindows()) EndsWith("res/Executable.sh", executables.First());
+		if (!OperatingSystem.IsWindows()) EndsWith("Resources/Executable.sh", executables.First());
 
 		// It should return an empty array if the searched command is not executable or not found.
 		IsEmpty(finder.Find("NotExecutable.sh"));
@@ -56,7 +56,7 @@ public sealed class FinderTests {
 
 		// It should return `false` if the searched command is not executable or not found.
 		IsFalse(finder.IsExecutable("foo/bar/baz.qux"));
-		IsFalse(finder.IsExecutable("res/NotExecutable.sh"));
+		IsFalse(finder.IsExecutable("Resources/NotExecutable.sh"));
 
 		// It should return `false` for a POSIX executable, when test is run on Windows.
 		AreEqual(!OperatingSystem.IsWindows(), finder.IsExecutable(Path.Join(fixtures, "Executable.sh")));

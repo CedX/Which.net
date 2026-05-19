@@ -64,7 +64,7 @@ function Publish-NuGetPackage {
 		[switch] $NoBuild
 	)
 
-	$output = "$PSScriptRoot/../var/NuGet"
+	$output = "$PSScriptRoot/../Temp/NuGet"
 	$argumentList = "--output", $output
 	if ($NoBuild) { $argumentList += "--no-build" }
 	dotnet pack @argumentList
