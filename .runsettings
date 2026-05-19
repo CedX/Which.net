@@ -1,5 +1,5 @@
 <RunSettings>
 	<RunConfiguration>
-		<ResultsDirectory>var/TestResults</ResultsDirectory>
+		<ResultsDirectory>Temp/TestResults</ResultsDirectory>
 	</RunConfiguration>
 </RunSettings>
