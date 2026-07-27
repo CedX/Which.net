@@ -20,15 +20,15 @@ public sealed class FinderTests {
 		// It should set the `Paths` property to the value of the `PATH` environment variable by default.
 		var pathEnv = Environment.GetEnvironmentVariable("PATH") ?? "";
 		List<string> paths = pathEnv.Length > 0 ? [.. pathEnv.Split(Path.PathSeparator, splitOptions).Distinct()] : [];
-		AreSequenceEqual(paths, new Finder().Paths.ToList());
+		AreSequenceEqual(paths, new Finder().Paths);
 
 		// It should set the `Extensions` property to the value of the `PATHEXT` environment variable by default.
 		var pathExt = Environment.GetEnvironmentVariable("PATHEXT") ?? "";
 		List<string> extensions = pathExt.Length > 0 ? [.. pathExt.Split(';', splitOptions).Select(item => item.ToLowerInvariant()).Distinct()] : [".exe", ".cmd", ".bat", ".com"];
-		AreSequenceEqual(extensions, new Finder().Extensions.ToList());
+		AreSequenceEqual(extensions, new Finder().Extensions);
 
 		// It should put in lower case the list of file extensions.
-		AreSequenceEqual([".exe", ".js", ".ps1"], new Finder(extensions: [".EXE", ".JS", ".PS1"]).Extensions.ToList());
+		AreSequenceEqual([".exe", ".js", ".ps1"], new Finder(extensions: [".EXE", ".JS", ".PS1"]).Extensions);
 	}
 
 	[TestMethod]
