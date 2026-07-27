@@ -29,6 +29,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<InternalsVisibleTo Include="$(AssemblyName).Tests" />
 		<None Include="../ReadMe.md" Pack="true" PackagePath="" />
 		<PackageReference Include="Mono.Unix" Version="7.*-*" />
 	</ItemGroup>
