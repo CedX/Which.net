@@ -59,9 +59,9 @@ else Console.WriteLine($"The 'foobar' command is located at: {path}");
 ```
 
 ## Options
-The behavior of the `Finder.Which(string command, IEnumerable<string>? paths = null, IEnumerable<string>? extensions = null)` method can be customized using the following parameters.
+The behavior of the `Finder.Which(string command, string[]? paths = null, string[]? extensions = null)` method can be customized using the following parameters.
 
-### IEnumerable&lt;string&gt; **extensions**
+### string[] **extensions**
 An enumerable of strings specifying the list of executable file extensions.
 On Windows, defaults to the list of extensions provided by the `PATHEXT` environment variable.
 
@@ -73,7 +73,7 @@ Which("foobar", extensions: [".foo", ".exe", ".cmd"]);
 > The `extensions` option is only meaningful on the Windows platform,
 > where the executability of a file is determined from its extension.
 
-### IEnumerable&lt;string&gt; **paths**
+### string[] **paths**
 An enumerable of strings specifying the system paths from which the given command will be searched.
 Defaults to the list of directories provided by the `PATH` environment variable.
 

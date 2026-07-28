@@ -32,24 +32,24 @@ public partial class Finder {
 	/// </summary>
 	/// <param name="paths">The list of system paths.</param>
 	/// <param name="extensions">The list of executable file extensions.</param>
-	public Finder(IEnumerable<string>? paths = null, IEnumerable<string>? extensions = null) {
+	public Finder(string[]? paths = null, string[]? extensions = null) {
 		var splitOptions = StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries;
 
 		paths ??= [];
-		if (!paths.Any()) {
+		if (paths.Length == 0) {
 			var pathEnv = Environment.GetEnvironmentVariable("PATH") ?? "";
 			paths = pathEnv.Length > 0 ? pathEnv.Split(Path.PathSeparator, splitOptions) : [];
 		}
 
 		extensions ??= [];
-		if (!extensions.Any()) {
+		if (extensions.Length == 0) {
 			var pathExt = Environment.GetEnvironmentVariable("PATHEXT") ?? "";
 			extensions = pathExt.Length > 0 ? pathExt.Split(';', splitOptions) : [".exe", ".cmd", ".bat", ".com"];
 		}
 
-		var regex = QuotePattern();
+		var quotePattern = QuotePattern();
 		Extensions = [.. extensions.Select(item => item.ToLowerInvariant()).Distinct()];
-		Paths = [.. paths.Select(item => regex.Replace(item, "")).Distinct()];
+		Paths = [.. paths.Select(item => quotePattern.Replace(item, "")).Distinct()];
 	}
 
 	/// <summary>
@@ -59,7 +59,7 @@ public partial class Finder {
 	/// <param name="paths">The system path. Defaults to the <c>PATH</c> environment variable.</param>
 	/// <param name="extensions">The executable file extensions. Defaults to the <c>PATHEXT</c> environment variable.</param>
 	/// <returns>The search results.</returns>
-	public static ResultSet Which(string command, IEnumerable<string>? paths = null, IEnumerable<string>? extensions = null) =>
+	public static ResultSet Which(string command, string[]? paths = null, string[]? extensions = null) =>
 		new(command, new Finder(paths, extensions));
 
 	/// <summary>
