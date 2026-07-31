@@ -10,6 +10,7 @@
 	<PropertyGroup>
 		<Authors>CedX</Authors>
 		<IncludeSymbols>true</IncludeSymbols>
+		<PackageIcon>Icon.png</PackageIcon>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>
 		<PackageTags>find;path;system;utility;which</PackageTags>
@@ -30,6 +31,7 @@
 
 	<ItemGroup>
 		<InternalsVisibleTo Include="$(AssemblyName).Tests" />
+		<None Include="../Icon.png" Pack="true" PackagePath="" />
 		<None Include="../ReadMe.md" Pack="true" PackagePath="" />
 		<PackageReference Include="Mono.Unix" Version="7.*-*" />
 	</ItemGroup>
