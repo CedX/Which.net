@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [1.0.0-rc8](https://github.com/CedX/Which.net/compare/v1.0.0-rc7...v1.0.0-rc8)
+- Added a package icon.
+
 ## Version [1.0.0-rc7](https://github.com/CedX/Which.net/compare/v1.0.0-rc6...v1.0.0-rc7)
 - Removed the command line interface.
 
