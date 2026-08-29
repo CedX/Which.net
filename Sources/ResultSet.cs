@@ -22,12 +22,12 @@ public sealed class ResultSet(string command, Finder finder): IEnumerable<string
 	/// <summary>
 	/// Returns a new enumerator that allows iterating the results of this set.
 	/// </summary>
-	/// <returns>An enumerator iterator for the results of this set.</returns>
+	/// <returns>An enumerator that can be used to iterate the results of this set.</returns>
 	public IEnumerator<string> GetEnumerator() => finder.Find(command).GetEnumerator();
 
 	/// <summary>
 	/// Returns a new enumerator that allows iterating the results of this set.
 	/// </summary>
-	/// <returns>An enumerator iterator for the results of this set.</returns>
+	/// <returns>An enumerator that can be used to iterate the results of this set.</returns>
 	IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
