@@ -5,7 +5,7 @@ in [C#](https://learn.microsoft.com/en-us/dotnet/csharp).
 ## Quick start
 Install the latest version of **Which for .NET** with [NuGet](https://www.nuget.org) package manager:
 
-```shell
+```powershell
 dotnet package add Belin.Which
 ```
 

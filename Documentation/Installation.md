@@ -6,7 +6,7 @@ and the [.NET CLI](https://learn.microsoft.com/en-us/dotnet/core/tools) tool up 
 		
 You can verify if you're already good to go with the following command:
 
-```shell
+```powershell
 dotnet --version
 # 10.0.201
 ```
@@ -16,7 +16,7 @@ dotnet --version
 ### 1. Install it
 From a command prompt, run:
 
-```shell
+```powershell
 dotnet package add Belin.Which
 ```
 
