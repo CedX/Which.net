@@ -18,7 +18,7 @@ This method takes the name of the command to locate, and returns a `ResultSet` i
 The `ResultSet` class implements the `IEnumerable<string>` interface.  
 It is therefore possible to iterate over the results using a `foreach` loop:
 
-```cs
+```csharp
 using static Belin.Which.Finder;
 
 // Finds all instances of an executable and returns them one at a time.
@@ -35,7 +35,7 @@ The `ResultSet` class also provides two convenient properties:
 The `ResultSet.All` property returns an array of the absolute paths of all instances of an executable found in the system path.
 If the executable could not be located, it returns an empty array.
 
-```cs
+```csharp
 using static Belin.Which.Finder;
 
 var paths = Which("foobar").All;
@@ -50,7 +50,7 @@ else {
 The `ResultSet.First` property returns the absolute path of the first instance of an executable found in the system path.
 If the executable could not be located, it returns a `null` reference.
 
-```cs
+```csharp
 using static Belin.Which.Finder;
 
 var path = Which("foobar").First;
@@ -65,7 +65,7 @@ The behavior of the `Finder.Which(string command, string[]? paths = null, string
 An enumerable of strings specifying the list of executable file extensions.
 On Windows, defaults to the list of extensions provided by the `PATHEXT` environment variable.
 
-```cs
+```csharp
 Which("foobar", extensions: [".foo", ".exe", ".cmd"]);
 ```
 
@@ -77,6 +77,6 @@ Which("foobar", extensions: [".foo", ".exe", ".cmd"]);
 An enumerable of strings specifying the system paths from which the given command will be searched.
 Defaults to the list of directories provided by the `PATH` environment variable.
 
-```cs
+```csharp
 Which("foobar", paths: ["/usr/local/bin", "/usr/bin"]);
 ```

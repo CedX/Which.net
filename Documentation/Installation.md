@@ -23,6 +23,6 @@ dotnet package add Belin.Which
 ### 2. Import it
 Now in your [C#](https://learn.microsoft.com/en-us/dotnet/csharp) code, you can use:
 
-```cs
+```csharp
 using static Belin.Which.Finder;
 ```
