@@ -20,15 +20,15 @@ public sealed class FinderTests {
 		// It should set the `Paths` property to the value of the `PATH` environment variable by default.
 		var pathEnv = Environment.GetEnvironmentVariable("PATH") ?? "";
 		List<string> paths = pathEnv.Length > 0 ? [.. pathEnv.Split(Path.PathSeparator, splitOptions).Distinct()] : [];
-		AreSequenceEqual(paths, new Finder().Paths);
+		Assert.AreSequenceEqual(paths, new Finder().Paths);
 
 		// It should set the `Extensions` property to the value of the `PATHEXT` environment variable by default.
 		var pathExt = Environment.GetEnvironmentVariable("PATHEXT") ?? "";
 		List<string> extensions = pathExt.Length > 0 ? [.. pathExt.Split(';', splitOptions).Select(item => item.ToLowerInvariant()).Distinct()] : [".exe", ".cmd", ".bat", ".com"];
-		AreSequenceEqual(extensions, new Finder().Extensions);
+		Assert.AreSequenceEqual(extensions, new Finder().Extensions);
 
 		// It should put in lower case the list of file extensions.
-		AreSequenceEqual([".exe", ".js", ".ps1"], new Finder(extensions: [".EXE", ".JS", ".PS1"]).Extensions);
+		Assert.AreSequenceEqual([".exe", ".js", ".ps1"], new Finder(extensions: [".EXE", ".JS", ".PS1"]).Extensions);
 	}
 
 	[TestMethod]
@@ -37,17 +37,17 @@ public sealed class FinderTests {
 
 		// It should return the path of the `Executable.cmd` file on Windows.
 		List<string> executables = [.. finder.Find("Executable")];
-		HasCount(OperatingSystem.IsWindows() ? 1 : 0, executables);
-		if (OperatingSystem.IsWindows()) EndsWith(@"Resources\Executable.cmd", executables.First());
+		Assert.HasCount(OperatingSystem.IsWindows() ? 1 : 0, executables);
+		if (OperatingSystem.IsWindows()) Assert.EndsWith(@"Resources\Executable.cmd", executables.First());
 
 		// It should return the path of the `Executable.sh` file on POSIX.
 		executables = [.. finder.Find("Executable.sh")];
-		HasCount(OperatingSystem.IsWindows() ? 0 : 1, executables);
-		if (!OperatingSystem.IsWindows()) EndsWith("Resources/Executable.sh", executables.First());
+		Assert.HasCount(OperatingSystem.IsWindows() ? 0 : 1, executables);
+		if (!OperatingSystem.IsWindows()) Assert.EndsWith("Resources/Executable.sh", executables.First());
 
 		// It should return an empty array if the searched command is not executable or not found.
-		IsEmpty(finder.Find("NotExecutable.sh"));
-		IsEmpty(finder.Find("foo"));
+		Assert.IsEmpty(finder.Find("NotExecutable.sh"));
+		Assert.IsEmpty(finder.Find("foo"));
 	}
 
 	[TestMethod]
@@ -55,13 +55,13 @@ public sealed class FinderTests {
 		var finder = new Finder();
 
 		// It should return `false` if the searched command is not executable or not found.
-		IsFalse(finder.IsExecutable("foo/bar/baz.qux"));
-		IsFalse(finder.IsExecutable("Resources/NotExecutable.sh"));
+		Assert.IsFalse(finder.IsExecutable("foo/bar/baz.qux"));
+		Assert.IsFalse(finder.IsExecutable("Resources/NotExecutable.sh"));
 
 		// It should return `false` for a POSIX executable, when test is run on Windows.
-		AreEqual(!OperatingSystem.IsWindows(), finder.IsExecutable(Path.Join(fixtures, "Executable.sh")));
+		Assert.AreEqual(!OperatingSystem.IsWindows(), finder.IsExecutable(Path.Join(fixtures, "Executable.sh")));
 
 		// It should return `false` for a Windows executable, when test is run on POSIX.
-		AreEqual(OperatingSystem.IsWindows(), finder.IsExecutable(Path.Join(fixtures, "Executable.cmd")));
+		Assert.AreEqual(OperatingSystem.IsWindows(), finder.IsExecutable(Path.Join(fixtures, "Executable.cmd")));
 	}
 }
