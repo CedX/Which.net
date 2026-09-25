@@ -1,6 +1,7 @@
 namespace Belin.Which;
 
 using static Belin.Which.Finder;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 /// <summary>
 /// Tests the features of the <see cref="ResultSet"/> class.

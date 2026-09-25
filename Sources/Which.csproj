@@ -21,7 +21,6 @@
 	<PropertyGroup>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AssemblyName>Belin.Which</AssemblyName>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<HotReloadAutoRestart>true</HotReloadAutoRestart>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>

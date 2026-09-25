@@ -22,6 +22,5 @@
 	<ItemGroup>
 		<PackageReference Include="MSTest" Version="4.*" />
 	  <ProjectReference Include="../Sources/Which.csproj" />
-		<Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
 	</ItemGroup>
 </Project>
