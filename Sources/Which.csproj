@@ -34,6 +34,6 @@
 		<InternalsVisibleTo Include="$(AssemblyName).Tests" />
 		<None Include="../Icon.png" Pack="true" PackagePath="" />
 		<None Include="../ReadMe.md" Pack="true" PackagePath="" />
-		<PackageReference Include="Mono.Unix" Version="7.*-*" />
+		<PackageReference Include="Mono.Unix" Version="7.1.0-final.1.21458.1" />
 	</ItemGroup>
 </Project>
