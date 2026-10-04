@@ -17,14 +17,6 @@ function Build-DotNetSolution {
 
 <#
 .SYNOPSIS
-	Applies style preferences and static analysis recommendations to the .NET solution.
-#>
-function Format-DotNetSolution {
-	dotnet format
-}
-
-<#
-.SYNOPSIS
 	Invokes the .NET test runner.
 #>
 function Invoke-DotNetTest {
