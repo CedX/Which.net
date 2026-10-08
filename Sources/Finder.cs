@@ -91,20 +91,11 @@ public partial class Finder {
 	/// <returns><see langword="true"/> if the specified file is executable, otherwise <see langword="false"/>.</returns>
 	[UnsupportedOSPlatform("windows")]
 	private static bool CheckFilePermissions(string file) {
-		// Others.
 		_ = Syscall.stat(file, out var stat);
 		if (stat.st_mode.HasFlag(FilePermissions.S_IXOTH)) return true;
-
-		// Group.
-		var gid = Syscall.getgid();
-		if (stat.st_mode.HasFlag(FilePermissions.S_IXGRP)) return gid == stat.st_gid;
-
-		// Owner.
-		var uid = Syscall.getuid();
-		if (stat.st_mode.HasFlag(FilePermissions.S_IXUSR)) return uid == stat.st_uid;
-
-		// Root.
-		return (stat.st_mode.HasFlag(FilePermissions.S_IXGRP) || stat.st_mode.HasFlag(FilePermissions.S_IXUSR)) && uid == 0;
+		if (stat.st_mode.HasFlag(FilePermissions.S_IXGRP)) return stat.st_gid == Syscall.getgid();
+		if (stat.st_mode.HasFlag(FilePermissions.S_IXUSR)) return stat.st_uid == Syscall.getuid();
+		return (stat.st_mode.HasFlag(FilePermissions.S_IXGRP) || stat.st_mode.HasFlag(FilePermissions.S_IXUSR)) && Syscall.getuid() == 0;
 	}
 
 	/// <summary>
