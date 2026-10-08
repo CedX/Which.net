@@ -20,7 +20,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MSTest" Version="4.4.1" />
+		<PackageReference Include="MSTest" Version="4.5.1" />
 	  <ProjectReference Include="../Sources/Which.csproj" />
 		<Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
 	</ItemGroup>
