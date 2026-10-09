@@ -20,12 +20,19 @@ public partial class Finder {
 	/// <summary>
 	/// The list of executable file extensions.
 	/// </summary>
-	public IList<string> Extensions { get; set; }
+	public IList<string> Extensions {
+		get; set => field = [.. value.Select(item => item.ToLowerInvariant()).Distinct()];
+	}
 
 	/// <summary>
 	/// The list of system paths.
 	/// </summary>
-	public IList<string> Paths { get; set; }
+	public IList<string> Paths {
+		get; set {
+			var quotePattern = QuotePattern();
+			field = [.. value.Select(item => quotePattern.Replace(item, "")).Distinct()];
+		}
+	}
 
 	/// <summary>
 	/// Creates a new finder.
@@ -47,9 +54,8 @@ public partial class Finder {
 			extensions = pathExt.Length > 0 ? pathExt.Split(';', splitOptions) : [".exe", ".cmd", ".bat", ".com"];
 		}
 
-		var quotePattern = QuotePattern();
-		Extensions = [.. extensions.Select(item => item.ToLowerInvariant()).Distinct()];
-		Paths = [.. paths.Select(item => quotePattern.Replace(item, "")).Distinct()];
+		Extensions = extensions;
+		Paths = paths;
 	}
 
 	/// <summary>
