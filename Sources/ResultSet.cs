@@ -7,7 +7,7 @@ using System.Collections;
 /// </summary>
 /// <param name="command">The searched command.</param>
 /// <param name="finder">The finder used to perform the search.</param>
-public sealed class ResultSet(string command, Finder finder): IEnumerable<string> {
+public class ResultSet(string command, Finder finder): IEnumerable<string> {
 
 	/// <summary>
 	/// All instances of the searched command.
