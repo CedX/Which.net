@@ -23,7 +23,6 @@ function Build-DotNetSolution {
 #>
 function Get-Version {
 	$xml = [xml] (Get-Content "$PSScriptRoot/../Which.slnx" -Raw)
-	$version = [semver] $xml.Solution.ProjectVersion
 	[semver] $xml.Solution.ProjectVersion
 }
 
