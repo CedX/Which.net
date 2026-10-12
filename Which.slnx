@@ -1,4 +1,4 @@
-<Solution>
+<Solution ProjectVersion="1.0.0-rc8">
 	<Project Path="Sources/Which.csproj" />
 	<Project Path="Tests/Which.Tests.csproj">
 		<Build Solution="Release|*" Project="false" />

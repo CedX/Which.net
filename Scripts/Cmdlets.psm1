@@ -17,6 +17,25 @@ function Build-DotNetSolution {
 
 <#
 .SYNOPSIS
+	Returns the solution version number.
+.OUTPUTS
+	The solution version number.
+#>
+function Get-Version {
+	[CmdletBinding()]
+	[OutputType([semver])]
+	param (
+		# Value indicating whether to return a `[semver]` object.
+		[switch] $PassThru
+	)
+
+	$xml = [xml] (Get-Content "$PSScriptRoot/../Which.slnx" -Raw)
+	$version = [semver] $xml.Solution.ProjectVersion
+	$PassThru ? $version : $version.ToString()
+}
+
+<#
+.SYNOPSIS
 	Invokes the .NET test runner.
 #>
 function Invoke-DotNetTest {
