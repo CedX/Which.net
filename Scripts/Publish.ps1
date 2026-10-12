@@ -7,6 +7,5 @@ else {
 }
 
 "Publishing the package..."
-$version = Get-Version
-New-GitTag "v$version"
+New-GitTag "v$(Get-Version)"
 Publish-NuGetPackage -NoBuild
