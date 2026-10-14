@@ -102,6 +102,6 @@ public partial class Finder {
 	/// <param name="path">The path of the file to test.</param>
 	/// <param name="mode">The accessibility checks to be performed.</param>
 	/// <returns><c>0</c> on success, otherwise <c>-1</c>.</returns>
-	[LibraryImport("libc", EntryPoint = "access", SetLastError = true, StringMarshalling = StringMarshalling.Utf8)]
+	[LibraryImport("libc", EntryPoint = "access", StringMarshalling = StringMarshalling.Utf8)]
 	private static partial int TestFileAccess(string path, int mode);
 }
