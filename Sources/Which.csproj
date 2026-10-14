@@ -4,7 +4,7 @@
 		<Copyright>© Cédric Belin</Copyright>
 		<Description>Find the instances of an executable in the system path. Like the `which` Linux command.</Description>
 		<Product>Which for .NET</Product>
-		<Version>2026.11.0-rc1</Version>
+		<Version>2026.10.0</Version>
 	</PropertyGroup>
 
 	<PropertyGroup>
