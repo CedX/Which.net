@@ -1,6 +1,7 @@
 # Changelog
 
-## Version [2026.10.0-rc1](https://github.com/CedX/Which.net/compare/v1.0.0-rc8...v2026.10.0-rc1)
+## Version [2026.10.0](https://github.com/CedX/Which.net/compare/v1.0.0-rc8...v2026.10.0)
+- Removed the dependency on `Mono.Unix` assembly.
 - Removed the `sealed` modifier from the classes.
 - Switched to a year-based versioning.
 
