@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [2026.10.0-rc1](https://github.com/CedX/Which.net/compare/v1.0.0-rc8...v2026.10.0-rc1)
+- Removed the `sealed` modifier from the classes.
+- Switched to a year-based versioning.
+
 ## Version [1.0.0-rc8](https://github.com/CedX/Which.net/compare/v1.0.0-rc7...v1.0.0-rc8)
 - Added a package icon.
 
