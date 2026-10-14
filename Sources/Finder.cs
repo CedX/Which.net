@@ -80,8 +80,9 @@ public partial class Finder {
 	/// <param name="file">The file to be checked.</param>
 	/// <returns><see langword="true"/> if the specified file is executable, otherwise <see langword="false"/>.</returns>
 	public bool IsExecutable(string file) => File.Exists(file) switch {
-		false => false,
-		true => OperatingSystem.IsWindows() ? Extensions.Contains(Path.GetExtension(file).ToLowerInvariant()) : TestFileAccess(file, 1 /* X_OK */) == 0
+		true when OperatingSystem.IsWindows() => Extensions.Contains(Path.GetExtension(file).ToLowerInvariant()),
+		true => TestFileAccess(file, 1 /* X_OK */) == 0,
+		false => false
 	};
 
 	/// <summary>
