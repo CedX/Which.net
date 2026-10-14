@@ -79,22 +79,10 @@ public partial class Finder {
 	/// </summary>
 	/// <param name="file">The file to be checked.</param>
 	/// <returns><see langword="true"/> if the specified file is executable, otherwise <see langword="false"/>.</returns>
-	public bool IsExecutable(string file) =>
-		File.Exists(file) && (OperatingSystem.IsWindows() ? CheckFileExtension(file) : CheckFilePermissions(file));
-
-	/// <summary>
-	/// Checks that the specified file is executable according to the executable file extensions.
-	/// </summary>
-	/// <param name="file">The file to be checked.</param>
-	/// <returns><see langword="true"/> if the specified file is executable, otherwise <see langword="false"/>.</returns>
-	private bool CheckFileExtension(string file) => Extensions.Contains(Path.GetExtension(file).ToLowerInvariant());
-
-	/// <summary>
-	/// Checks that the specified file is executable according to its permissions.
-	/// </summary>
-	/// <param name="file">The file to be checked.</param>
-	/// <returns><see langword="true"/> if the specified file is executable, otherwise <see langword="false"/>.</returns>
-	private static bool CheckFilePermissions(string file) => TestFileAccess(file, 1 /* X_OK */) == 0;
+	public bool IsExecutable(string file) => File.Exists(file) switch {
+		false => false,
+		true => OperatingSystem.IsWindows() ? Extensions.Contains(Path.GetExtension(file).ToLowerInvariant()) : TestFileAccess(file, 1 /* X_OK */) == 0
+	};
 
 	/// <summary>
 	/// Finds the instances of an executable in the specified directory.
