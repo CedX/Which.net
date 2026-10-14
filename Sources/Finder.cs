@@ -1,8 +1,7 @@
 namespace Belin.Which;
 
-using Mono.Unix.Native;
 using System.IO;
-using System.Runtime.Versioning;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
 /// <summary>
@@ -95,14 +94,7 @@ public partial class Finder {
 	/// </summary>
 	/// <param name="file">The file to be checked.</param>
 	/// <returns><see langword="true"/> if the specified file is executable, otherwise <see langword="false"/>.</returns>
-	[UnsupportedOSPlatform("windows")]
-	private static bool CheckFilePermissions(string file) {
-		_ = Syscall.stat(file, out var stat);
-		if (stat.st_mode.HasFlag(FilePermissions.S_IXOTH)) return true;
-		if (stat.st_mode.HasFlag(FilePermissions.S_IXGRP)) return stat.st_gid == Syscall.getgid();
-		if (stat.st_mode.HasFlag(FilePermissions.S_IXUSR)) return stat.st_uid == Syscall.getuid();
-		return (stat.st_mode.HasFlag(FilePermissions.S_IXGRP) || stat.st_mode.HasFlag(FilePermissions.S_IXUSR)) && Syscall.getuid() == 0;
-	}
+	private static bool CheckFilePermissions(string file) => TestFileAccess(file, 1 /* X_OK */) == 0;
 
 	/// <summary>
 	/// Finds the instances of an executable in the specified directory.
@@ -114,4 +106,13 @@ public partial class Finder {
 		.Concat(OperatingSystem.IsWindows() ? Extensions : [])
 		.Select(extension => Path.GetFullPath(Path.Join(directory, $"{command}{extension}")))
 		.Where(IsExecutable);
+
+	/// <summary>
+	/// Tests the accessibility of a file.
+	/// </summary>
+	/// <param name="path">The path of the file to test.</param>
+	/// <param name="mode">The accessibility checks to be performed.</param>
+	/// <returns><c>0</c> on success, otherwise <c>-1</c>.</returns>
+	[LibraryImport("libc", EntryPoint = "access", SetLastError = true, StringMarshalling = StringMarshalling.Utf8)]
+	private static partial int TestFileAccess(string path, int mode);
 }
