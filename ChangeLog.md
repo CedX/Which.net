@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [2026.11.0](https://github.com/CedX/Which.net/compare/v2026.10.0...v2026.11.0)
+- Changed the type of the `Extensions` and `Paths` properties of the `Finder` class to `List<string>`.
+- Changed the type of the `extensions` and `paths` parameters of the constructor and the `Which` method of the `Finder` class to `IEnumerable<string>`.
+
 ## Version [2026.10.0](https://github.com/CedX/Which.net/compare/v1.0.0-rc8...v2026.10.0)
 - Removed the dependency on `Mono.Unix` assembly.
 - Removed the `sealed` modifier from the classes.
