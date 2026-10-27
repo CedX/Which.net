@@ -12,8 +12,8 @@ StartProcess("git", $"push origin v{Tools.Version}");
 WriteOutput("Publishing the package...");
 StartProcess("dotnet", "pack --no-build --output Temp/NuGet");
 
-var nugetApiKey = Environment.GetEnvironmentVariable("NUGET_API_KEY");
+var apiKey = Environment.GetEnvironmentVariable("NUGET_API_KEY");
 Directory.EnumerateFiles("Temp/NuGet", "*.nupkg")
-	.Select(file => $@"nuget push ""{file}"" --api-key {nugetApiKey} --source NuGet")
+	.Select(file => $@"nuget push ""{file}"" --api-key {apiKey} --source NuGet")
 	.ToList()
 	.ForEach(arguments => StartProcess("dotnet", arguments));
