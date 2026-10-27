@@ -15,7 +15,7 @@ public static class Tools {
 	/// Value indicating whether the requested configuration is "Release".
 	/// </summary>
 	public static bool IsRelease { get; } =
-		Environment.GetCommandLineArgs().Skip(1).Any(arg => arg.Equals("-release", StringComparison.OrdinalIgnoreCase));
+		Environment.GetCommandLineArgs().Skip(1).Any(arg => arg.Equals("--release", StringComparison.OrdinalIgnoreCase));
 
 	/// <summary>
 	/// The path to the solution file.
