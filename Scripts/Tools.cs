@@ -26,11 +26,8 @@ public static class Tools {
 	/// <summary>
 	/// The project version number.
 	/// </summary>
-	public static Version Version { get; } = Version.Parse(XDocument
-		.Load(Path.Join(Environment.CurrentDirectory, "Package.xml"))
-		.Descendants("Version")
-		.Single()
-		.Value);
+	public static Version Version { get; } =
+		Version.Parse(XDocument.Load(Path.Join(Environment.CurrentDirectory, "Package.xml")).Descendants("Version").Single().Value);
 
 	/// <summary>
 	/// Cleans the directory located at the specified path.
