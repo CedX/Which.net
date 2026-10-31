@@ -26,18 +26,11 @@ public static class Tools {
 	/// <summary>
 	/// The project version number.
 	/// </summary>
-	public static Version Version { get; }
-
-	/// <summary>
-	/// Initializes the class.
-	/// </summary>
-	static Tools() {
-		var defaultValue = new Version(0, 0, 0);
-		Version = XDocument.Load(Solution.FullName).Root switch {
-			null => defaultValue,
-			var element => element.Attribute("ProjectVersion") is XAttribute attribute ? Version.Parse(attribute.Value) : defaultValue
-		};
-	}
+	public static Version Version { get; } = Version.Parse(XDocument
+		.Load(Path.Join(Environment.CurrentDirectory, "Package.xml"))
+		.Descendants("Version")
+		.Single()
+		.Value);
 
 	/// <summary>
 	/// Cleans the directory located at the specified path.
