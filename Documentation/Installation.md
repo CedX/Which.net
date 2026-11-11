@@ -8,7 +8,7 @@ You can verify if you're already good to go with the following command:
 
 ```powershell
 dotnet --version
-# 10.0.201
+# 11.0.100
 ```
 
 ## Installing with NuGet package manager
