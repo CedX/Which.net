@@ -68,7 +68,7 @@ public static class Tools {
 	/// Prints the specified message to the standard error and terminates the process.
 	/// </summary>
 	/// <param name="message">The message to print.</message>
-	public static void WriteError(string message) {
+	public static void WriteError(object? message) {
 		Console.Error.WriteLine(message);
 		Environment.Exit(1);
 	}
@@ -77,5 +77,5 @@ public static class Tools {
 	/// Prints the specified message to the standard output.
 	/// </summary>
 	/// <param name="message">The message to print.</message>
-	public static void WriteOutput(string message) => Console.Out.WriteLine(message);
+	public static void WriteOutput(object? message) => Console.Out.WriteLine(message);
 }
