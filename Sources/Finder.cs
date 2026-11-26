@@ -27,10 +27,7 @@ public partial class Finder {
 	/// The list of system paths.
 	/// </summary>
 	public List<string> Paths {
-		get; set {
-			var quotePattern = QuotePattern;
-			field = [.. value.Select(item => quotePattern.Replace(item, "")).Distinct()];
-		}
+		get; set => field = [.. value.Select(item => QuotePattern.Replace(item, "")).Distinct()];
 	}
 
 	/// <summary>
