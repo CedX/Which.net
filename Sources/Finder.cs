@@ -10,9 +10,8 @@ using System.Text.RegularExpressions;
 public partial class Finder {
 
 	/// <summary>
-	/// Gets the regular expression used to remove quotation marks from a path.
+	/// The regular expression used to remove quotation marks from a path.
 	/// </summary>
-	/// <returns>The regular expression used to remove quotation marks from a path.</returns>
 	[GeneratedRegex(@"^""|""$")]
 	private static partial Regex QuotePattern { get; }
 
