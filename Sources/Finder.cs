@@ -14,7 +14,7 @@ public partial class Finder {
 	/// </summary>
 	/// <returns>The regular expression used to remove quotation marks from a path.</returns>
 	[GeneratedRegex(@"^""|""$")]
-	private static partial Regex QuotePattern();
+	private static partial Regex QuotePattern { get; }
 
 	/// <summary>
 	/// The list of executable file extensions.
@@ -28,7 +28,7 @@ public partial class Finder {
 	/// </summary>
 	public List<string> Paths {
 		get; set {
-			var quotePattern = QuotePattern();
+			var quotePattern = QuotePattern;
 			field = [.. value.Select(item => quotePattern.Replace(item, "")).Distinct()];
 		}
 	}
